@@ -1,0 +1,22 @@
+:root {
+    --main-bg-grey: #D8D5DB;
+    --secondary-bg-grey: #ADACB5;
+    --dark-blue: #2D3142;
+    --light-blue: #B0D7FF;
+    --light-purple: #EAE8FF;
+    background-color: var(--main-bg-grey);
+}
+
+
+
+
+.fa-bars {
+    color: var(--dark-blue);
+    font-size: 2.5em;
+    transition: all 0.3s ease-in-out;
+}
+
+.fa-bars:hover {
+
+    font-size: 2.75em;
+}
