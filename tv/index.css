@@ -1,20 +1,51 @@
 :root {
+    --white: #FFFFFF;
+    --light-orange: #FFBF69;
+    --dark-orange: #FF9F1C;
+    --light-blue: #CBF3F0;
+    --dark-blue: #2EC4B6;
     --main-bg-grey: #D8D5DB;
     --secondary-bg-grey: #ADACB5;
-    --dark-blue: #2D3142;
+    --dark-blue2: #2D3142;
     --light-blue: #B0D7FF;
     --light-purple: #EAE8FF;
-    background-color: var(--main-bg-grey);
+    background-color: var(--white);
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0px 0px 0px 20px;
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    width: 300px;
+    border: 5px solid var(--dark-blue2);
+    margin: 20px 40px 20px 40px;
+    transition: transform 0.3s ease-in-out;
+}
+
+video:hover {
+    transform: scale(1.05);
+    border: 5px solid var(--dark-orange);
 }
 
 
 .fa-bars {
-    color: var(--dark-blue);
-    font-size: 2.5em;
+    color: var(--white);
+    background-color: var(--light-orange);
+    font-size: 1.8em;
+    padding: 5px 10px 5px 10px;
     transition: all 0.3s ease-in-out;
 }
 
 .fa-bars:hover {
-
-    font-size: 2.75em;
+    background-color: var(--dark-orange);
+    transform: scale(1.05);
+    color: var(--dark-blue2);
 }
