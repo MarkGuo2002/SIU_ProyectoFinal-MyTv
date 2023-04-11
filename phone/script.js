@@ -18,6 +18,30 @@ function handleIconClick(clickedIcon) {
         case "volume-down":
             volumeDown();
             break;
+        case "arrow-up":
+            arrowUp();
+            break;
+        case "arrow-down":
+            arrowDown();
+            break;
+        case "arrow-left":
+            arrowLeft();
+            break;
+        case "arrow-right":
+            arrowRight();
+            break;
+        case "play-pause":
+            playPause();
+            break;
+        case "gestures":
+            gestures();
+            break;
+        case "go-back":
+            goBack();
+            break;
+        case "okay":
+            okay();
+            break;
         default:
             console.log('Unknown icon clicked');
             break;
@@ -27,44 +51,50 @@ function handleIconClick(clickedIcon) {
 function volumeUp() {
     fetch("http://localhost:3000/volume-up", {method: "GET"})
     .then(response => {console.log(response.statusText);})
-    console.log('Volume Up clicked');
 }
   
 function volumeDown() {
     fetch("http://localhost:3000/volume-down", {method: "GET"})
     .then(response => {console.log(response.statusText);})
-    console.log('Volume Down clicked');
 }
-  
-/*function arrowUp() {
-    console.log('Arrow Up clicked');
+
+function arrowUp() {
+    fetch("http://localhost:3000/arrow-up", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function arrowDown() {
-    console.log('Arrow Down clicked');
+    fetch("http://localhost:3000/arrow-down", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function arrowLeft() {
-    console.log('Arrow Left clicked');
+    fetch("http://localhost:3000/arrow-left", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function arrowRight() {
-    console.log('Arrow Right clicked');
+    fetch("http://localhost:3000/arrow-right", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function playPause() {
-    console.log('Play/Pause clicked');
+    fetch("http://localhost:3000/play-pause", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function gestures() {
-    console.log('Gestures clicked');
+    fetch("http://localhost:3000/gestures", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function goBack() {
-    console.log('Go Back clicked');
+    fetch("http://localhost:3000/go-back", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
 }
 
 function okay() {
-    console.log('Okay clicked');
-}*/
+    fetch("http://localhost:3000/okay", {method: "GET"})
+    .then(response => {console.log(response.statusText);})
+}
 
