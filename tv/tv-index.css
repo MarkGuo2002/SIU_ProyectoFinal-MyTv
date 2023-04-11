@@ -12,6 +12,8 @@
     --light-purple: #EAE8FF;
     background-color: var(--dark-blue2-light);
     padding: 0px;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 
@@ -21,19 +23,21 @@ a {
 }
 
 .video-container {
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin: 0px 0px 0px 20px;
-    width: 95%;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
     height: 100%;
 }
 
 
 video {
-    width: 350px;
+    border-radius: 10px;
+    width: 375px;
     border: 5px solid var(--dark-blue2);
     margin: 30px 40px 20px 30px;
     transition: transform 0.3s ease-in-out;
@@ -66,10 +70,12 @@ video:hover {
     margin: none;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 
     padding: 10px;
     width: 98%;
-    height: 5vh;
+    height: 6vh;
+    border-radius: 10px;
     background-color: var(--dark-blue2);
     transition: all 0.3s ease-in-out;
 }
@@ -78,18 +84,16 @@ video:hover {
 .header li {
 
     padding: 10px 40px 10px 40px;
+    border-left: 1px solid var(--dark-blue2-light);
     list-style-type: none;
-
-    border-right: 1px solid var(--dark-blue2-light);
 }
 
-.header li:last-child {
-    border-right: none;
-}
+
+
 
 
 .header li a {
-    font-size: 1.5em;
+    font-size: 2em;
     color: var(--white);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -105,4 +109,35 @@ video:hover {
 
 .header li i {
     margin-left: 15px;
+}
+
+.user-dropdown {
+    z-index: 10;
+    height: 0px;
+    width: 0px;
+    background-color: rgba(45, 49, 66, 0.75);
+    position: absolute;
+    border-radius: 10px;
+
+    overflow: hidden;
+    backdrop-filter: blur(8.2px);
+
+    transform: translateY(8vh);
+
+}
+
+.user-dropdown-show {
+    height: 350px;
+    width: 400px;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo {
+    margin-right: auto;
+    padding: 10px 40px 10px 40px;
+    border-right: 1px solid var(--dark-blue2-light);
+    font-size: 2em;
+    color: var(--dark-orange);
+    font-weight: 700;
+
 }

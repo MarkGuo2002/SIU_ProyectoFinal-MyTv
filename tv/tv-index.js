@@ -1,6 +1,10 @@
-let sidebar = document.querySelector(".sidebar");
-let burger = document.querySelector(".burger");
+let daylyDose = document.getElementById("daylyDose");
+let user = document.getElementById("user")
+let userDropdown = document.querySelector(".user-dropdown")
+console.log(userDropdown)
 
-burger.addEventListener("click", () => {
-    sidebar.classList.toggle("show-sidebar");
-})
+
+user.addEventListener("click", () => {
+    console.log("click");
+    userDropdown.classList.toggle("user-dropdown-show");
+});
