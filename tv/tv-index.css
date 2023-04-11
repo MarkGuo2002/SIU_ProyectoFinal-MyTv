@@ -7,10 +7,13 @@
     --main-bg-grey: #D8D5DB;
     --secondary-bg-grey: #ADACB5;
     --dark-blue2: #2D3142;
+    --dark-blue2-light: #424860;
     --light-blue: #B0D7FF;
     --light-purple: #EAE8FF;
-    background-color: var(--white);
+    background-color: var(--dark-blue2-light);
+    padding: 0px;
 }
+
 
 a {
     text-decoration: none;
@@ -24,7 +27,7 @@ a {
     align-items: center;
     align-content: center;
     margin: 0px 0px 0px 20px;
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -43,6 +46,8 @@ video:hover {
 
 
 .fa-bars {
+    position: relative;
+    left: 250px;
     cursor: pointer;
     color: var(--white);
     background-color: var(--light-orange);
@@ -57,28 +62,47 @@ video:hover {
     color: var(--dark-blue2);
 }
 
-.sidebar {
-    z-index: 1;
-    padding: 50px;
-    width: 20vh;
-    height: 100vh;
+.header {
+    margin: none;
+    display: flex;
+    flex-direction: row;
+
+    padding: 10px;
+    width: 98%;
+    height: 5vh;
     background-color: var(--dark-blue2);
     transition: all 0.3s ease-in-out;
 }
 
-.sidebar:hover {}
 
+.header li {
 
-.sidebar li {
-    color: var(--white);
+    padding: 10px 40px 10px 40px;
     list-style-type: none;
-    font-size: 1.5em;
-    margin: 20px 0px 20px 0px;
-    padding: 20px 0px 20px 0px;
-    border-bottom: 1px solid var(--white);
+
+    border-right: 1px solid var(--dark-blue2-light);
 }
 
-.sidebar li:hover {
+.header li:last-child {
+    border-right: none;
+}
+
+
+.header li a {
+    font-size: 1.5em;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header li:hover a {
     color: var(--dark-orange);
     cursor: pointer;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+
+}
+
+.header li i {
+    margin-left: 15px;
 }
