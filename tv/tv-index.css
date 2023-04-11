@@ -12,9 +12,14 @@
     background-color: var(--white);
 }
 
+a {
+    text-decoration: none;
+    color: var(--white);
+}
+
 .video-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -23,10 +28,11 @@
     height: 100%;
 }
 
+
 video {
-    width: 300px;
+    width: 350px;
     border: 5px solid var(--dark-blue2);
-    margin: 20px 40px 20px 40px;
+    margin: 30px 40px 20px 30px;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -37,6 +43,7 @@ video:hover {
 
 
 .fa-bars {
+    cursor: pointer;
     color: var(--white);
     background-color: var(--light-orange);
     font-size: 1.8em;
@@ -48,4 +55,30 @@ video:hover {
     background-color: var(--dark-orange);
     transform: scale(1.05);
     color: var(--dark-blue2);
+}
+
+.sidebar {
+    z-index: 1;
+    padding: 50px;
+    width: 20vh;
+    height: 100vh;
+    background-color: var(--dark-blue2);
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar:hover {}
+
+
+.sidebar li {
+    color: var(--white);
+    list-style-type: none;
+    font-size: 1.5em;
+    margin: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 0px;
+    border-bottom: 1px solid var(--white);
+}
+
+.sidebar li:hover {
+    color: var(--dark-orange);
+    cursor: pointer;
 }
