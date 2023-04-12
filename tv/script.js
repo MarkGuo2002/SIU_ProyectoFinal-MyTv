@@ -1,5 +1,5 @@
 function getMessage() {
-  fetch("http://localhost:3000/get-message", {method: "GET"})
+  fetch("http://localhost:5500/get-message", {method: "GET"})
   .then(response => response.text())
   .then(data => handleData(data));
 }
@@ -40,7 +40,7 @@ function handleData(data) {
 }
 
 function volumeUp() {
-  console.log("Volume down");
+  console.log("Volume up");
 }
 
 function volumeDown() {
@@ -80,4 +80,4 @@ function okay() {
 }
 
 console.log("Getting messages");
-setInterval(getMessage, 10);
+setInterval(getMessage, 1000);

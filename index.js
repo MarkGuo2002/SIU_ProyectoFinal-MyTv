@@ -1,108 +1,93 @@
-const http = require('http'); // Importa el modulo http
-const fs = require('fs'); // Importa el modulo fs
+const path = require('path');
+const http = require('http');
+const fs = require('fs');
+const socketIO = require('socket.io');
 
-const PORT = 3000; // Puerto en el que escucha el servidor
-var action = 'None';
+const PORT = 3000;
 
-const handleRequest = async (request, response) => {
-    const url = request.url;
-    response.setHeader("Access-Control-Allow-Origin", "*");
-    
-    if(request.method === "GET"){ // Comprobar si GET es el metodo correcto
-        let content;
-        let contentType;
-        switch(url){
-            case "/volume-up":
-                action = "volume-up";
-                console.log('Volume up request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Volume up request received');
-                response.end();
-                break;
-            case "/volume-down":
-                action = "volume-down";
-                console.log('Volume down request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Volume down request received');
-                response.end();
-                break;
-            case "/arrow-up":
-                action = "arrow-up";
-                console.log('Arrow up request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Arrow up request received');
-                response.end();
-                break;
-            case "/arrow-down":
-                action = "arrow-down";
-                console.log('Arrow down request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Arrow down request received');
-                response.end();
-                break;
-            case "/arrow-left":
-                action = "arrow-left";
-                console.log('Arrow left request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Arrow left request received');
-                response.end();
-                break;
-            case "/arrow-right":
-                action = "arrow-right";
-                console.log('Arrow right request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Arrow right request received');
-                response.end();
-                break;
-            case "/play-pause":
-                action = "play-pause";
-                console.log('Play pause request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Play pause request received');
-                response.end();
-                break;
-            case "/gestures":
-                action = "gestures";
-                console.log('Gestures request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Gestures request received');
-                response.end();
-                break;
-            case "/go-back":
-                action = "go-back";
-                console.log('Go back request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Go back request received');
-                response.end();
-                break;
-            case "/okay":
-                action = "okay";
-                console.log('Okay request received');
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write('Okay request received');
-                response.end();
-                break;
-            case "/get-message":
-                response.writeHead(200, {"Content-Type": "text/plain"});
-                response.write(action);
-                response.end();
-                action = 'None';
-                break;
-            default:
-                console.log('Unknown icon clicked');
-                response.writeHead(404, {"Content-Type": "text/plain"});
-                response.write('Unknown icon clicked');
-                response.end();
-                break;
-        }
-    }else{
-        response.writeHead(405, {"Content-Type": "text/html"});
-        response.write(`Metodo ${request.method} no permitido!\r\n`);
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        fs.readFile('phone/index.html', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+    } else if (req.url === '/script.js') {
+        fs.readFile('phone/script.js', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/javascript' });
+            res.end(data);
+        });
+    } else if (req.url === '/styles.css') { 
+        fs.readFile('phone/styles.css', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/css' });
+            res.end(data);
+        });
+    } else if (req.url === '/socket.io/socket.io.js') {
+        const socketIOClientPath = path.join(__dirname, 'node_modules', 'socket.io', 'client-dist', 'socket.io.min.js');
+        fs.readFile(socketIOClientPath, (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'application/javascript' });
+            res.end(data);
+        });
+    } else if (req.url === '/css-addons/css/fontawesome.css') {
+        fs.readFile('css-addons/css/fontawesome.css', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/css' });
+            res.end(data);
+        });
+    } else if (req.url === '/css-addons/css/solid.css') {
+        fs.readFile('css-addons/css/solid.css', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/css' });
+            res.end(data);
+        });
+    } else {
+        res.writeHead(404);
+        res.end('Not found');
     }
-}
+});
 
-const server = http.createServer(handleRequest);
+const io = socketIO(server);
 
-server.listen(PORT);
-console.log(`Listening! (port ${PORT})`)
+io.on('connection', (socket) => {
+    console.log('User connected');
+
+    socket.on('icon-clicked', (data) => {
+        console.log(`Icon clicked: ${data.iconId}`);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+});
+
+server.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
 
