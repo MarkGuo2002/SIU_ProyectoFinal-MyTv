@@ -131,6 +131,10 @@ document.addEventListener("keydown", (e) => {
         }
     }
     else if (e.key === "Enter") {
+        if (i == 3) {
+            //add user-dropdown class to user dropdown
+            userDropdown.classList.toggle("user-dropdown-show");
+        }
         console.log("enter");
         let video = document.getElementById(selectedId);
         video.paused ? video.play() : video.pause();
