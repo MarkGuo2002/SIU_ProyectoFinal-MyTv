@@ -74,10 +74,12 @@ let selectedId = INTERFACES[i].id;
 document.getElementById(selectedId).classList.add("selected");
 
 document.addEventListener("keydown", (e) => {
+    e.preventDefault();
     console.log(i);
     // Remove selected class from previous item
     document.getElementById(selectedId).classList.remove("selected");
     if (e.key === "ArrowRight") {
+
         console.log("right");
         i++;
         if (i > INTERFACES.length - 1) {
@@ -87,6 +89,7 @@ document.addEventListener("keydown", (e) => {
         selectedId = INTERFACES[i].id;
         document.getElementById(selectedId).classList.add("selected");
     } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
         console.log("left");
         i--;
         if (i < 0) {
@@ -96,6 +99,7 @@ document.addEventListener("keydown", (e) => {
         selectedId = INTERFACES[i].id;
         document.getElementById(selectedId).classList.add("selected");
     } else if (e.key === "ArrowDown") {
+        e.preventDefault();
         console.log("down");
         i = i + 3;
         if (i > INTERFACES.length - 1) {
@@ -105,6 +109,7 @@ document.addEventListener("keydown", (e) => {
         selectedId = INTERFACES[i].id;
         document.getElementById(selectedId).classList.add("selected");
     } else if (e.key === "ArrowUp") {
+        e.preventDefault();
         console.log("up");
         i = i - 3;
         if (i < 0) {
@@ -115,12 +120,58 @@ document.addEventListener("keydown", (e) => {
         document.getElementById(selectedId).classList.add("selected");
     }
 
-    if (i == 3) {
-        userDropdown.classList.add("user-dropdown-show");
+    else if (e.key === " ") {
+        console.log("space");
+        if (!document.fullscreenElement) { // Enter full screen
+            let video = document.getElementById(selectedId);
+            video.requestFullscreen();
+            video.play();
+        } else { // Exit full screen
+            document.exitFullscreen();
+        }
     }
-    else {
-        userDropdown.classList.remove("user-dropdown-show");
+    else if (e.key === "Enter") {
+        console.log("enter");
+        let video = document.getElementById(selectedId);
+        video.paused ? video.play() : video.pause();
     }
+
+    else if (e.key === "a") {
+        console.log("d");
+        let video = document.getElementById(selectedId);
+        video.currentTime = video.currentTime - 10;
+    }
+    else if (e.key === "d") {
+        console.log("q");
+        let video = document.getElementById(selectedId);
+
+        video.currentTime = video.currentTime + 10;
+    }
+
+    else if (e.key === "w") {
+        console.log("w");
+        e.preventDefault(); // prevent default behavior of arrow key
+        let video = document.getElementById(selectedId);
+        if (video.volume < 1) {
+            video.volume += 0.1;
+        }
+    } else if (e.key === "s") {
+        console.log("s"); s
+        e.preventDefault(); // prevent default behavior of arrow key
+        let video = document.getElementById(selectedId);
+        if (video.volume > 0) {
+            video.volume -= 0.1;
+        }
+    }
+
+
+
+    // if (i == 3) {
+    //     userDropdown.classList.add("user-dropdown-show");
+    // }
+    // else {
+    //     userDropdown.classList.remove("user-dropdown-show");
+    // }
 });
 
 
