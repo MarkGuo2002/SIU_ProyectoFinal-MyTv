@@ -6,8 +6,8 @@ const socketIO = require('socket.io');
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        fs.readFile('phone/index.html', (err, data) => {
+    if (req.url === '/phone') {
+        fs.readFile('phone/phone-index.html', (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.end(JSON.stringify(err));
@@ -16,8 +16,8 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(data);
         });
-    } else if (req.url === '/script.js') {
-        fs.readFile('phone/script.js', (err, data) => {
+    } else if (req.url === '/phone-script.js') {
+        fs.readFile('phone/phone-script.js', (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.end(JSON.stringify(err));
@@ -26,8 +26,38 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'text/javascript' });
             res.end(data);
         });
-    } else if (req.url === '/styles.css') { 
-        fs.readFile('phone/styles.css', (err, data) => {
+    } else if (req.url === '/phone-styles.css') { 
+        fs.readFile('phone/phone-styles.css', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/css' });
+            res.end(data);
+        });
+    } else if (req.url === '/tv') {
+        fs.readFile('tv/tv-index.html', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+    } else if (req.url === '/tv-script.js') {
+        fs.readFile('tv/tv-script.js', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/javascript' });
+            res.end(data);
+        });
+    } else if (req.url === '/tv-styles.css') { 
+        fs.readFile('tv/tv-styles.css', (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.end(JSON.stringify(err));
@@ -73,15 +103,31 @@ const server = http.createServer((req, res) => {
     }
 });
 
+let tvSocket = null;
+
 const io = socketIO(server);
 
 io.on('connection', (socket) => {
-    console.log('User connected');
+    console.log('A user connected');
+
+    // Store the TV client's socket connection
+    socket.on('tv', () => {
+        console.log('TV client connected');
+        tvSocket = socket;
+    });
 
     socket.on('icon-clicked', (data) => {
         console.log(`Icon clicked: ${data.iconId}`);
     });
 
+    socket.on('message', (data) => {
+        console.log('Message received:', data);
+
+        // Forward the message to the TV client, if connected
+        if (tvSocket) {
+            tvSocket.emit('message', data);
+        }
+    });
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
