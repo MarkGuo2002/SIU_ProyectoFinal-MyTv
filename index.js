@@ -1,7 +1,6 @@
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
-const socketIO = require('socket.io');
 
 const PORT = 3000;
 
@@ -103,31 +102,20 @@ const server = http.createServer((req, res) => {
     }
 });
 
-let tvSocket = null;
-
-const io = socketIO(server);
+const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    // Store the TV client's socket connection
-    socket.on('tv', () => {
-        console.log('TV client connected');
-        tvSocket = socket;
-    });
-
     socket.on('icon-clicked', (data) => {
         console.log(`Icon clicked: ${data.iconId}`);
+        const message = {
+            type: 'iconClicked',
+            iconId: data.iconId
+        };
+        sendMessage(message);
     });
 
-    socket.on('message', (data) => {
-        console.log('Message received:', data);
-
-        // Forward the message to the TV client, if connected
-        if (tvSocket) {
-            tvSocket.emit('message', data);
-        }
-    });
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
@@ -137,3 +125,7 @@ server.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
 
+function sendMessage(message) {
+    io.emit('message', message);
+    console.log("Message sent");
+}

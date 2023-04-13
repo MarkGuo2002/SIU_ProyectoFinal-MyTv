@@ -1,22 +1,29 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const socket = io();
+const socket = io('http://localhost:3000');
 
-  socket.on('message', function (data) {
-      console.log('Message received:', data);
-      handleMessage(data);
-  });
-
-  function handleMessage(message) {
-      switch (message.type) {
-          case 'volumeUp':
-              console.log('Volume up');
-              break;
-          case 'volumeDown':
-              console.log('Volume down');
-              break;
-          // Add more cases for different message types
-          default:
-              console.log('Unknown message type:', message.type);
-      }
-  }
+socket.on('connect', () => {
+  console.log('Connected to server');
 });
+
+socket.on('message', (message) => {
+  console.log(`Received message: ${message.iconId}`);
+  handleRequest(message.iconId);
+});
+
+socket.on('disconnect', () => {
+  console.log('Disconnected from server');
+});
+
+  
+function handleRequest(iconId) {
+    switch (iconId) {
+        case 'volume-up':
+            console.log('Volume up');
+            break;
+        case 'volume-down':
+            console.log('Volume down');
+            break;
+        // Add more cases for different message types
+        default:
+            console.log('Unknown request');
+    }
+}
