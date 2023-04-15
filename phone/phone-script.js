@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+
 function handleIconClick(iconId) { // Handle icon click
     socket.emit('icon-clicked', { iconId }); // Send icon id to the server
 } 
