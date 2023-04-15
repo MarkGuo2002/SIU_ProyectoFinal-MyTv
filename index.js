@@ -1,11 +1,11 @@
-const path = require('path');
+const path = require('path'); 
 const http = require('http');
 const fs = require('fs');
 
-const PORT = 3000;
+const PORT = 3000; // Port to listen on
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/phone') {
+const server = http.createServer((req, res) => { // Create server
+    if (req.url === '/phone') { 
         fs.readFile('phone/phone-index.html', (err, data) => {
             if (err) {
                 res.writeHead(404);
@@ -27,6 +27,26 @@ const server = http.createServer((req, res) => {
         });
     } else if (req.url === '/phone-styles.css') { 
         fs.readFile('phone/phone-styles.css', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/css' });
+            res.end(data);
+        });
+    } else if (req.url === '/fav') { 
+        fs.readFile('phone/phone-fav.html', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+    } else if (req.url === '/phone-fav.css') { 
+        fs.readFile('phone/phone-fav.css', (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.end(JSON.stringify(err));
@@ -96,36 +116,58 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'text/css' });
             res.end(data);
         });
+    } else if (req.url === '/css-addons/webfonts/fa-solid-900.woff2') {
+        fs.readFile('css-addons/webfonts/fa-solid-900.woff2', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log('Failed to load fa-solid-900.woff2 error: ' + err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'font/woff2' });
+            res.end(data);
+        });
+    /*} else if (req.url === '/css-addons/webfonts/fa-solid-900.ttf') {
+        fs.readFile('css-addons/webfonts/fa-solid-900.ttf', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log('Failed to load fa-solid-900.ttf error: ' + err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'font/ttf' });
+            res.end(data);
+        });  */
     } else {
         res.writeHead(404);
         res.end('Not found');
     }
 });
 
-const io = require('socket.io')(server);
+const io = require('socket.io')(server); // Create socket
 
-io.on('connection', (socket) => {
-    console.log('A user connected');
-
-    socket.on('icon-clicked', (data) => {
+io.on('connection', (socket) => { // Listen for connection
+    console.log('A user connected'); // Log connection
+ 
+    socket.on('icon-clicked', (data) => { // Listen for icon click
         console.log(`Icon clicked: ${data.iconId}`);
         const message = {
             type: 'iconClicked',
             iconId: data.iconId
-        };
-        sendMessage(message);
+        }; 
+        sendMessage(message); // Send message to tv
     });
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', () => { // Listen for disconnection
         console.log('User disconnected');
     });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, () => { // Listen on port
     console.log(`Server listening on port ${PORT}`);
 });
 
-function sendMessage(message) {
+function sendMessage(message) { // Send message to tv
     io.emit('message', message);
     console.log("Message sent");
 }

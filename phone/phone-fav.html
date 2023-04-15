@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css-addons/css/fontawesome.css">
     <link rel="stylesheet" href="/css-addons/css/solid.css">
-    <link rel="stylesheet" href="fav.css">
-
+    <link rel="stylesheet" href="phone-fav.css">
+    <script src="/socket.io/socket.io.js"></script>
     <title>Phone: fav</title>
 </head>
 
@@ -24,9 +24,10 @@
             <video id="dailyDose" controls src="/resources/videos/dailyDoseOfInternet.mp4"></video>
         </div>
         <div class="box4">
-            <i class="fa-solid fa-hands"></i>
+            <i class="fa-solid fa-hands" id="gestures"></i>
         </div>
       </div>
+      <script src="phone-script.js"></script>
 </body>
 
 </html>
