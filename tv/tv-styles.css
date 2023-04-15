@@ -115,8 +115,8 @@ video {
 
 .user-dropdown {
     z-index: 10;
-    height: 0px;
-    width: 0px;
+    height: 70%;
+    width:  200px;
     background-color: rgba(45, 49, 66, 0.75);
     position: absolute;
     border-radius: 10px;
@@ -126,6 +126,21 @@ video {
 
     transform: translateY(8vh);
 
+}
+.circle{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.user-option{
+    
+    margin-left: 25px;
+    margin-top: 50px;
+    
+}
+.user-option-button{
+    height: 50px ;
+    width: 150px;
 }
 
 .user-dropdown-show {
