@@ -1,6 +1,6 @@
 const socket = io(); // Connect to the server
 
-var fav = 0;  // Indicates if th user is on the fav page or not
+var fav = 0;  // Indicates if the user is on the fav page or not
 let isDebouncing = false; // Indicates if a movement has been detected recently
 const wait = 500 // Time to wait before detecting another movement
 
@@ -40,8 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     icons.forEach(icon => { // Add event listener to each icon
         icon.addEventListener('click', function() {
-            console.log(this.id);
-            handleIconClick(this.id); // Handle icon click
+        if (this.id == "fav") { // If the user clicks on the fav icon
+          window.location.href = '/fav'; 
+        }else if (this.id == "go-back-fav") { 
+          window.location.href = '/phone';
+        }else{
+          handleIconClick(this.id); // Handle icon click
+        }
         });
     });
 

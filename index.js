@@ -100,6 +100,7 @@ const server = http.createServer((req, res) => { // Create server
         fs.readFile('css-addons/css/fontawesome.css', (err, data) => {
             if (err) {
                 res.writeHead(404);
+                console.log(err)
                 res.end(JSON.stringify(err));
                 return;
             }
