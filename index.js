@@ -139,6 +139,105 @@ const server = http.createServer((req, res) => { // Create server
             res.writeHead(200, { 'Content-Type': 'font/ttf' });
             res.end(data);
         });  */
+    } else if (req.url === '/resources/videos/daily-dose.mp4') {
+        fs.readFile('resources/videos/daily-dose.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/amazon.mp4') {
+        fs.readFile('resources/videos/amazon.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/aot.mp4') {
+        fs.readFile('resources/videos/aot.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/bbc-earth.mp4') {
+        fs.readFile('resources/videos/bbc-earth.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/china.mp4') {
+        fs.readFile('resources/videos/china.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/game-of-thrones.mp4') {
+        fs.readFile('resources/videos/game-of-thrones.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/paella.mp4') {
+        fs.readFile('resources/videos/paella.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/san-jacobo.mp4') {
+        fs.readFile('resources/videos/daily-dose.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
+    } else if (req.url === '/resources/videos/squid-game.mp4') {
+        fs.readFile('resources/videos/squid-game.mp4', (err, data) => {
+            if (err) {
+                res.writeHead(404);
+                console.log(err);
+                res.end(JSON.stringify(err));
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': 'video/mp4' });
+            res.end(data);
+        });
     } else {
         res.writeHead(404);
         res.end('Not found');
