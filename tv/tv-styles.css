@@ -160,3 +160,13 @@ video {
     font-weight: 700;
 
 }
+
+#drop-down-menu {
+    display: none;
+  }
+  
+  /* Muestra el objeto cuando tiene la clase "visible" */
+  #drop-down-menu.visible {
+    display: block;
+  }
+  

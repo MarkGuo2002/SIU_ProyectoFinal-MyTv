@@ -207,3 +207,10 @@ user.addEventListener("click", () => {
     console.log("click");
     userDropdown.classList.toggle("user-dropdown-show");
 });
+
+
+function show_drop() {
+    var drop_menu = document.getElementById("drop-down-menu");
+    drop_menu.classList.toggle("visible");
+  }
+
