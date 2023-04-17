@@ -50,10 +50,19 @@
   color: var(--dark-blue);
   font-size: 4em;
   transition: all 0.3s ease-in-out;
+  margin-right: 0.8em;
 }
 
-.fa-hands:hover {
-  color: var(--light-blue);
+.fa-rotate-left {
+  color: var(--dark-blue);
+  font-size: 4em;
+  transition: all 0.3s ease-in-out;
+  margin-left: 0.8em;
+}
+
+.fa-hands:hover,
+.fa-rotate-left:hover {
+  color: #FFFFCC;
 }
 
 .container > * {

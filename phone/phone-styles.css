@@ -3,13 +3,13 @@
     --secondary-bg-grey: #ADACB5;
     --dark-blue: #2D3142;
     --light-blue: #B0D7FF;
-    --light-purple: #EAE8FF;
+    --font-size: 4em;
     background-color: var(--main-bg-grey);
 }
 
 .container {
   display: grid;
-  grid-template-rows:  20% 12.5% 12.5% 12.5% 12.5% 20%;
+  grid-template-rows:  12.5% 12.5% 12.5% 16.1% 16.1% 20%;
   grid-template-columns: 1fr;
   height: 100vh;
 }
@@ -29,19 +29,19 @@
 .box2A {
   grid-row: 2 / 3;
   justify-self: center;
-  align-self: center;
+  align-self: start;
 }
 
 .box2 {
   grid-row: 3 / 4;
   justify-self: center;
-  align-self: center;
+  align-self: start;
 }
 
 .box2B {
   grid-row: 4 / 5;
   justify-self: center;
-  align-self: center;
+  align-self: start;
 }
 
 .box3 {
@@ -69,20 +69,41 @@
   }
 
 
-.fa-chevron-left{
+.fa-chevron-left {
   color: var(--dark-blue);
-  font-size: 4em;
+  font-size: var(--font-size);
   transition: all 0.3s ease-in-out;
-  margin-right: 0.2em; ;
-  
+  margin-right: 0.4em;
 }
 
-.fa-chevron-right{
+.fa-chevron-right {
   color: var(--dark-blue);
-  font-size: 4em;
+  font-size: var(--font-size);
   transition: all 0.3s ease-in-out;
-  margin-left: 0.2em; ;
-  
+  margin-left: 0.45em;
+}
+
+.fa-chevron-left {
+  color: var(--dark-blue);
+  font-size: var(--font-size);
+  transition: all 0.3s ease-in-out;
+  margin-right: 0.45em;
+}
+
+.fa-hands,
+.fa-rotate-left {
+  color: var(--dark-blue);
+  font-size: var(--font-size);
+  transition: all 0.3s ease-in-out;
+  margin-right: 0.8em;
+}
+
+.fa-star,
+.fa-check {
+  color: var(--dark-blue);
+  font-size: var(--font-size);
+  transition: all 0.3s ease-in-out;
+  margin-left: 0.8em;
 }
 
 
@@ -91,12 +112,10 @@
 .fa-chevron-down,
 .fa-chevron-right,
 .fa-pause-circle,
-.fa-hands,
 .fa-rotate-left,
-.fa-check,
 .fa-minus {
   color: var(--dark-blue);
-  font-size: 4em;
+  font-size: var(--font-size);
   transition: all 0.3s ease-in-out;
 }
 
@@ -107,10 +126,11 @@
 .fa-chevron-right:hover,
 .fa-pause-circle:hover,
 .fa-hands:hover,
+.fa-star:hover,
 .fa-rotate-left:hover,
 .fa-check:hover,
 .fa-minus:hover {
-  color: var(--light-blue);
+  color: #FFFFCC;
 }
 
 .container > * {
