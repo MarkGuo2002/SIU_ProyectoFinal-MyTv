@@ -37,17 +37,17 @@ app.get("phone/phone-fav.css", (req, res) => {
     res.sendFile(path.join(__dirname, 'phone/phone-fav.css'));
 });
 
-app.get("tv/tv-index.html", (req, res) => {
+app.get("/tv", (req, res) => {
     res.sendFile(path.join(__dirname, 'tv/tv-index.html'));
 });
 
-app.get("tv/tv-script.js", (req, res) => {
-    res.sendFile(path.join(__dirname, 'tv/tv-script.js'));
-});
+// app.get("tv/tv-script.js", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'tv/tv-script.js'));
+// });
 
-app.get("tv/tv-styles.css", (req, res) => {
-    res.sendFile(path.join(__dirname, 'tv/tv-styles.css'));
-});
+// app.get("tv/tv-styles.css", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'tv/tv-styles.css'));
+// });
 
 app.get("socket.io/socket.io.js", (req, res) => {
     res.sendFile(path.join(__dirname, 'node_modules', 'socket.io', 'client-dist', 'socket.io.min.js'));
@@ -60,19 +60,19 @@ app.get('*', (req, res) => {
 });
 
 
-
+function sendMessage(message) { // Send message to tv
+    io.emit('message', message);
+    console.log("Message sent");
+}
 
 
 io.on('connection', (socket) => { // Listen for connection
-    console.log('A user connected'); // Log connection
+    console.log(`user with sd ${socket.id} connected`); // Log connection
 
-    socket.on('icon-clicked', (data) => { // Listen for icon click
-        console.log(`Icon clicked: ${data.iconId}`);
-        const message = {
-            type: 'iconClicked',
-            iconId: data.iconId
-        };
-        sendMessage(message); // Send message to tv
+
+    socket.on('icon-clicked', (iconId) => { // Listen for icon-click event
+        console.log(`Icon clicked: ${iconId}`);
+        socket.broadcast.emit('tv-action', iconId); // Send message to tv
     });
 
     socket.on('disconnect', () => { // Listen for disconnection
@@ -83,8 +83,3 @@ io.on('connection', (socket) => { // Listen for connection
 server.listen(PORT, () => { // Listen on port
     console.log(`Server listening on port ${PORT}`);
 });
-
-function sendMessage(message) { // Send message to tv
-    io.emit('message', message);
-    console.log("Message sent");
-}

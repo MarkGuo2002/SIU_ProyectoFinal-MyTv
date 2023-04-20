@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="tv-styles.css">
     <!-- <script src="tv-index.js"></script> -->
     <!--script src="tv-index.js" defer></script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script> -->
     <script src="yikai-tv-script.js" defer></script>
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 
     <title>TV</title>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -25,15 +26,16 @@
         <li id="settings"><a href="tv-settings.html">Settings<i class="fa-solid fa-gear"></i></a></li>
         <li id="favourites"><a>Favourites<i class="fa-solid fa-heart"></i></a></li>
         <li id="gestures"><a onclick="mostrarPopup()">Gestures<i class="fa-solid fa-hand-point-up"></i></a></li>
-        <li id="user"><a onclick="show_drop()" >User<i class="fa-solid fa-user"></i></a></li>
-        <div id= "drop-down-menu" class="user-dropdown" >
+        <li id="user"><a onclick="show_drop()">User<i class="fa-solid fa-user"></i></a></li>
+        <div id="drop-down-menu" class="user-dropdown">
             <div class="circle_user">
                 <img src="\resources\Imagenes_avatares\avatar-1.png" alt="Descripción de la imagen">
             </div>
-            <a href="tv-experience.html" >
+            <a href="tv-experience.html">
                 <div>
                     <p class="Text_experiencia"> Your experience, María! </p>
-                    <img class="barra_carga " src="\resources\Imagenes_avatares\barra_carga_gris_grande.jpg" alt="Barra de carga">
+                    <img class="barra_carga " src="\resources\Imagenes_avatares\barra_carga_gris_grande.jpg"
+                        alt="Barra de carga">
                 </div>
             </a>
         </div>
@@ -41,30 +43,30 @@
 
     <div id="miPopup" class="popup">
         <div class="contenido-popup">
-          <h2>Gestures</h2>
-          <div class="circle_container">
-            
-            <img src="\resources\gestos\gesto1.jpg" alt="Volume up">
-            <img src="\resources\gestos\gesto2.jpg" alt="Volume down">
-            <img src="\resources\gestos\gesto3.jpg" alt="Next video">
-            <img src="\resources\gestos\gesto4.jpg" alt="Previous video">
-            
-          </div>
-          <div class="circle_container">
-          <div class="gestures_texts">
-            <p> Volume up</p>
-          </div>
-          <div class="gestures_texts">
-            <p> Volume down</p>
-          </div>
-          <div class="gestures_texts">
-            <p> Next video</p>
-          </div>
-          <div class="gestures_texts">
-            <p> Previous video</p>
-          </div>
-          </div>
-          <button onclick="ocultarPopup()">Go back</button>
+            <h2>Gestures</h2>
+            <div class="circle_container">
+
+                <img src="\resources\gestos\gesto1.jpg" alt="Volume up">
+                <img src="\resources\gestos\gesto2.jpg" alt="Volume down">
+                <img src="\resources\gestos\gesto3.jpg" alt="Next video">
+                <img src="\resources\gestos\gesto4.jpg" alt="Previous video">
+
+            </div>
+            <div class="circle_container">
+                <div class="gestures_texts">
+                    <p> Volume up</p>
+                </div>
+                <div class="gestures_texts">
+                    <p> Volume down</p>
+                </div>
+                <div class="gestures_texts">
+                    <p> Next video</p>
+                </div>
+                <div class="gestures_texts">
+                    <p> Previous video</p>
+                </div>
+            </div>
+            <button onclick="ocultarPopup()">Go back</button>
         </div>
     </div>
 
