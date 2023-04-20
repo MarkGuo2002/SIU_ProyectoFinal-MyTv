@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css-addons/css/fontawesome.css">
     <link rel="stylesheet" href="/css-addons/css/solid.css">
-    <link rel="stylesheet" href="phone-fav.css">
+    <link rel="stylesheet" href="\phone\phone-fav.css">
     <script src="/socket.io/socket.io.js"></script>
     <title>Phone: fav</title>
 </head>
@@ -17,18 +17,20 @@
         <div class="box1">  
             <h1>Favourites</h1>  
         </div>
+        
         <div class="box2">
-            <video id="dailyDose" controls src="/resources/videos/dailyDoseOfInternet.mp4"></video>
+            <img id="dailyDose1" onclick="sendidvideo('daily-dose')"  src="\resources\preview_videos\DailyDose.png" alt = ""></img>
         </div>
         <div class="box3">
-            <video id="dailyDose" controls src="/resources/videos/dailyDoseOfInternet.mp4"></video>
+            <img id="dailyDose2" onclick="sendidvideo('paella')"  src="\resources\preview_videos\Paella.png" alt=""></img>
         </div>
         <div class="box4">
             <i class="fa-solid fa-hands" id="gestures"></i>
             <i class="fa-solid fa-rotate-left" id="go-back-fav"></i>
         </div>
       </div>
-      <script src="phone-script.js"></script>
+      <script src="phone\phone-script.js">
+      </script>
 </body>
 
 </html>

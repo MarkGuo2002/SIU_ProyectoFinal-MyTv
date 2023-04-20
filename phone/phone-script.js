@@ -65,5 +65,8 @@ function redirectTo(url) { // Redirect to the given url
   window.location.href = url;
 }
 
-
+function sendidvideo(idvideo) {
+  console.log(idvideo);
+  socket.emit('tv-action', idvideo);
+}
 
