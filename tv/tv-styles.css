@@ -46,6 +46,9 @@ a {
     margin: 0;
 }
 
+#miPopup{
+    z-index: 10;
+}
 
 video {
     border-radius: 10px;
@@ -144,4 +147,210 @@ video {
     color: var(--dark-orange);
     font-weight: 700;
 
+}
+
+
+.user-dropdown {
+    z-index: 10;
+    height: 70%;
+    width:  200px;
+    background-color: rgba(45, 49, 66, 0.75);
+    position: absolute;
+    border-radius: 10px;
+
+    overflow: hidden;
+    backdrop-filter: blur(8.2px);
+
+    transform: translateY(8vh);
+
+}
+.circle{
+    margin: 20px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;    
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 25px;
+    background-color: blue;
+    margin-left: 45px;
+    
+}
+.circle img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.barra_carga{
+    width: 90%;
+    height: 25%;
+    background-color: var(--dark-orange);
+    position: absolute;
+    top: 60%;
+    left: 5%;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+.Text_experiencia{
+    margin-left: 30%;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+.user-option{
+    
+    margin-left: 25px;
+    margin-top: 50px;
+    
+}
+.user-option-button{
+    height: 50px ;
+    width: 150px;
+}
+
+.user-dropdown-show {
+    height: 350px;
+    width: 400px;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo-container {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    margin-right: auto;
+    padding: 10px 40px 10px 40px;
+
+    font-size: 2em;
+    color: var(--dark-orange);
+    font-weight: 700;
+
+}
+
+#drop-down-menu {
+    display: none;
+  }
+  
+  /* Muestra el objeto cuando tiene la clase "visible" */
+  #drop-down-menu.visible {
+    display: block;
+  }
+  
+/* ------------------------------- dropdown menu ------------------------------- */
+/* -------------------------------experience page------------------------------- */
+
+.experience-card{
+    width: 95%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+    padding: 0px 0px 0px 0px;
+    background-color: var(--dark-blue2);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    margin-left : 3%;
+}
+
+.experience-card:hover{
+    transform: scale(1.05);
+    border: 5px solid var(--dark-orange);
+}
+
+.Experience_needed{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Description_text{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.experience-title{
+    
+    width: 95%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+    padding: 0px 0px 0px 0px;
+    background-color: var(--dark-blue2);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    margin-left : 3%;
+}
+
+.circle_exp{
+    margin: 20px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;    
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 25px;
+    background-color: blue;
+}
+
+.gestures_texts{
+    margin: 40px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;    
+    
+    overflow: hidden;
+    margin-top: 25px;
+   
+}
+
+.circle_exp img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contenido-popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .circle_user{
+  margin: 20px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;    
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 25px;
+    background-color: blue;
+    margin-left: 40%;
+  }
+
+  .circle_user img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
