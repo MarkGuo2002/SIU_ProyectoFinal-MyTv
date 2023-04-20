@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
@@ -10,9 +11,7 @@ const io = socketIO(server);
 const PORT = 3000; // Port to listen on
 
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname))); // Serve static files
