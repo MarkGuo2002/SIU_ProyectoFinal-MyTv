@@ -67,7 +67,8 @@ const INTERFACES = [
 let logo = document.getElementById("logo");
 
 logo.addEventListener("click", () => {
-    sendFavs();
+    fav = "test";
+    sendFav(fav);
 };
 
 socket.on('connect', () => { // Listen for connection
@@ -361,8 +362,8 @@ function play_pause(){
 
 }
 
-function sendFav() {
-    socket.emit('send-fav', (fav));
+function sendFav(fav) {
+    socket.emit('send-fav', fav);
 }
 
 
