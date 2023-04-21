@@ -69,7 +69,7 @@ let logo = document.getElementById("logo");
 logo.addEventListener("click", () => {
     fav = "test";
     sendFav(fav);
-};
+});
 
 socket.on('connect', () => { // Listen for connection
     console.log('Connected to server');

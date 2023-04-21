@@ -1,12 +1,13 @@
 const socket = io(); // Connect to the server
+var containerFav1 = document.querySelector(".container-fav1");
+var containerFav2 = document.querySelector(".container-fav2");
 
 var fav = 0;  // Indicates if the user is on the fav page or not
 let isDebouncing = false; // Indicates if a movement has been detected recently
 const wait = 500 // Time to wait before detecting another movement
-var fav1 = null;
-var fav2 = null;
-
-
+var fav1 = 'DailyDose';
+var fav2 = 'Paella';
+updateFav();
 
 window.addEventListener('devicemotion', event => { // Detect device movement
   if (!isDebouncing) {
@@ -72,21 +73,14 @@ function sendidvideo(idvideo) {
   socket.emit('video-clicked', idvideo);
 }
 
-function updateFav() {
-  socket.emit('update-fav');
-}
-
 socket.on('connect', () => { // Listen for connection
   console.log('Connected to server');
 });
 
-socket.on('tv-action', (iconId) => { // Listen for message
-  console.log(`Message recived: ${iconId}`);
-});
-
 socket.on('send-update-fav', fav => {
-  fav1 = fav2;
+  fav2 = fav1;
   fav1 = fav;
+  updateFav();
   console.log(fav1);
   console.log(fav2);
 })
@@ -95,6 +89,7 @@ socket.on('disconnect', () => { // Listen for disconnection
   console.log('Disconnected from server');
 });
 
-socket.on('test', () => {
-  console.log('test');
-});
+function updateFav(){
+  containerFav1.innerHTML = `<img id="${fav1}" onclick="sendidvideo('${fav1}')" src="\\resources\\preview_videos\\${fav1}.png" alt="">`;
+  containerFav2.innerHTML = `<img id="${fav2}" onclick="sendidvideo('${fav2}')" src="\\resources\\preview_videos\\${fav2}.png" alt="">`;
+}
