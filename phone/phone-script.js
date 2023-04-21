@@ -67,6 +67,6 @@ function redirectTo(url) { // Redirect to the given url
 
 function sendidvideo(idvideo) {
   console.log(idvideo);
-  socket.emit('tv-action', idvideo);
+  socket.emit('video-clicked', idvideo);
 }
 

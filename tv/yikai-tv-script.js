@@ -184,6 +184,7 @@ function handleRequest(iconId) { // Handle request
             break;
         case 'play-pause':
             console.log('Play/pause');
+            play_pause();
             break;
         case 'gestures':
             console.log('Gestures');
@@ -193,6 +194,14 @@ function handleRequest(iconId) { // Handle request
             break;
         case 'okay':
             console.log('Okay');
+            break;
+        case 'daily-dose':
+            console.log('Daily dose on tv');
+            playVideo('daily-dose');
+            break;
+        case 'paella':
+            console.log('Paella on tv');
+            playVideo('paella');
             break;
         default:
             console.log('Unknown request');
@@ -327,6 +336,27 @@ function ocultarPopup() {
 
 function iraExperience() {
     window.location.href = "tv-experience.html";
+}
+
+function playVideo(id){
+    console.log("in the function", id);
+    let video = document.getElementById(id);
+    // video.requestFullscreen();-- da errores de seguridad
+    video.paused ? video.play() : video.pause();
+}
+
+function play_pause(){
+    // Queremos que el video se reproduzca y se haga pantalla completa en play y que se pause y se haga pequeño en pause 
+    // Si el video está en pausa, que se reproduzca y se haga pantalla completa
+    // Si el video está en reproducción, que se pause y se haga pequeño
+
+    let video = document.getElementById(selectedId);
+    
+    video.paused ? video.play() : video.pause();
+    //video.paused ? video.requestFullscreen() : document.exitFullscreen(); -- da errores de seguridad 
+
+
+
 }
 
 

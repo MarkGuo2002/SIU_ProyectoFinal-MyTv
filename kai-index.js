@@ -75,6 +75,11 @@ io.on('connection', (socket) => { // Listen for connection
         socket.broadcast.emit('tv-action', iconId); // Send message to tv
     });
 
+    socket.on('video-clicked', (videoId) => { // Listen for video-click event
+        console.log(`Video clicked: ${videoId}`);
+        socket.broadcast.emit('tv-action', videoId); // Send message to tv
+    });
+
     socket.on('disconnect', () => { // Listen for disconnection
         console.log('User disconnected');
     });
