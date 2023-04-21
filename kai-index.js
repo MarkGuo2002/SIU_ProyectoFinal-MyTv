@@ -68,10 +68,15 @@ function sendMessage(message) { // Send message to tv
 
 io.on('connection', (socket) => { // Listen for connection
     console.log(`user with sd ${socket.id} connected`); // Log connection
-
+    socket.broadcast.emit('helllo');
 
     socket.on('icon-clicked', (iconId) => { // Listen for icon-click event
         console.log(`Icon clicked: ${iconId}`);
+        socket.broadcast.emit('tv-action', iconId); // Send message to tv
+    });
+
+    socket.on('update_fav', (iconId) => { // Listen for icon-click event
+        console.log(`Favourites : ${iconId}`);
         socket.broadcast.emit('tv-action', iconId); // Send message to tv
     });
 
@@ -79,6 +84,8 @@ io.on('connection', (socket) => { // Listen for connection
         console.log(`Video clicked: ${videoId}`);
         socket.broadcast.emit('tv-action', videoId); // Send message to tv
     });
+
+    socket.broadcast.emit('test');
 
     socket.on('disconnect', () => { // Listen for disconnection
         console.log('User disconnected');
@@ -88,3 +95,4 @@ io.on('connection', (socket) => { // Listen for connection
 server.listen(PORT, () => { // Listen on port
     console.log(`Server listening on port ${PORT}`);
 });
+
