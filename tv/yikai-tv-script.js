@@ -4,7 +4,6 @@ let userDropdown = document.querySelector(".user-dropdown");
 let videoContainer = document.querySelector(".video-container");
 console.log(userDropdown);
 
-
 const INTERFACES = [
     {
         id: "logo",
@@ -65,7 +64,11 @@ const INTERFACES = [
     }
 ]
 
+let logo = document.getElementById("logo");
 
+logo.addEventListener("click", () => {
+    sendFavs();
+};
 
 socket.on('connect', () => { // Listen for connection
     console.log('Connected to server');
@@ -148,7 +151,6 @@ function moveRight() {
     selectedId = INTERFACES[i].id;
     document.getElementById(selectedId).classList.add("selected");
 }
-
 
 populateVideos();
 let i = 0;
@@ -359,6 +361,9 @@ function play_pause(){
 
 }
 
+function sendFav() {
+    socket.emit('send-fav', (fav));
+}
 
 
 

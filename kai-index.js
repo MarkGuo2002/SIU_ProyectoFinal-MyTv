@@ -10,7 +10,6 @@ const io = socketIO(server);
 
 const PORT = 3000; // Port to listen on
 
-
 app.use(cors());
 
 
@@ -75,17 +74,15 @@ io.on('connection', (socket) => { // Listen for connection
         socket.broadcast.emit('tv-action', iconId); // Send message to tv
     });
 
-    socket.on('update_fav', (iconId) => { // Listen for icon-click event
-        console.log(`Favourites : ${iconId}`);
-        socket.broadcast.emit('tv-action', iconId); // Send message to tv
+    socket.on('send-fav', (fav) => { 
+        console.log('fav: ', fav);
+        socket.broadcast.emit('send-update-fav', fav); // Send message to phone
     });
 
     socket.on('video-clicked', (videoId) => { // Listen for video-click event
         console.log(`Video clicked: ${videoId}`);
         socket.broadcast.emit('tv-action', videoId); // Send message to tv
     });
-
-    socket.broadcast.emit('test');
 
     socket.on('disconnect', () => { // Listen for disconnection
         console.log('User disconnected');

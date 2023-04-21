@@ -3,8 +3,8 @@ const socket = io(); // Connect to the server
 var fav = 0;  // Indicates if the user is on the fav page or not
 let isDebouncing = false; // Indicates if a movement has been detected recently
 const wait = 500 // Time to wait before detecting another movement
-var favVideo1 = null;
-var favVideo2 = null;
+var fav1 = null;
+var fav2 = null;
 
 
 
@@ -74,7 +74,6 @@ function sendidvideo(idvideo) {
 
 function updateFav() {
   socket.emit('update-fav');
-
 }
 
 socket.on('connect', () => { // Listen for connection
@@ -84,6 +83,13 @@ socket.on('connect', () => { // Listen for connection
 socket.on('tv-action', (iconId) => { // Listen for message
   console.log(`Message recived: ${iconId}`);
 });
+
+socket.on('send-update-fav', fav => {
+  fav1 = fav2;
+  fav1 = fav;
+  console.log(fav1);
+  console.log(fav2);
+})
 
 socket.on('disconnect', () => { // Listen for disconnection
   console.log('Disconnected from server');
