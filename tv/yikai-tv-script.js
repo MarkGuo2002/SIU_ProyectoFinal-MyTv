@@ -67,7 +67,8 @@ const INTERFACES = [
 let logo = document.getElementById("logo");
 
 logo.addEventListener("click", () => {
-    sendFavs();
+    fav = "test";
+    sendFav(fav);
 });
 
 socket.on('connect', () => { // Listen for connection
@@ -204,6 +205,10 @@ function handleRequest(iconId) { // Handle request
         case 'paella':
             console.log('Paella on tv');
             playVideo('paella');
+            break;
+        case 'heart':
+            console.log('Heart');
+            sendFav();
             break;
         default:
             console.log('Unknown request');
@@ -357,12 +362,11 @@ function play_pause() {
     video.paused ? video.play() : video.pause();
     //video.paused ? video.requestFullscreen() : document.exitFullscreen(); -- da errores de seguridad 
 
-
-
 }
 
 function sendFav() {
-    socket.emit('send-fav', (fav));
+    var fav = document.getElementById(selectedId);
+    socket.emit('update-server-fav', fav.getAttribute('id'));
 }
 
 
