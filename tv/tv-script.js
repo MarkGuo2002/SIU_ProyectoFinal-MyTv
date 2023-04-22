@@ -2,6 +2,7 @@ const socket = io(); // Connect to the server
 let user = document.getElementById("user");
 let userDropdown = document.querySelector(".user-dropdown");
 let videoContainer = document.querySelector(".video-container");
+let messageContainer = document.querySelector(".message-container");
 console.log(userDropdown);
 
 const INTERFACES = [
@@ -80,9 +81,32 @@ socket.on('tv-action', (iconId) => { // Listen for message
     handleRequest(iconId); // Handle request
 });
 
+socket.on('sound', () => {
+    console.log("sound detected");
+    displayMessage("I have detected a very loud sound, are you okay? Do you need any assistance?");
+});
+
 socket.on('disconnect', () => { // Listen for disconnection
     console.log('Disconnected from server');
 });
+
+function displayMessage(msg) {
+    if (messageContainer.childElementCount > 0) {
+        return;
+    }
+    let messageCard = document.createElement("div");
+    messageCard.classList.add("message-card");
+
+    let message = document.createElement("p");
+    message.innerHTML = msg;
+
+    messageCard.appendChild(message);
+    messageContainer.appendChild(messageCard);
+    setTimeout(() => {
+        messageContainer.removeChild(messageCard);
+    }, 5000);
+
+}
 
 function populateVideos() {
     console.log("populate");
