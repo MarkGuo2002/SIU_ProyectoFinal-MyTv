@@ -1,261 +1,98 @@
-const path = require('path'); 
+const path = require('path');
 const http = require('http');
-const fs = require('fs');
+const socketIO = require('socket.io');
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
 const PORT = 3000; // Port to listen on
 
-const server = http.createServer((req, res) => { // Create server
-    if (req.url === '/phone') { 
-        fs.readFile('phone/phone-index.html', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        });
-    } else if (req.url === '/phone-script.js') {
-        fs.readFile('phone/phone-script.js', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/javascript' });
-            res.end(data);
-        });
-    } else if (req.url === '/phone-styles.css') { 
-        fs.readFile('phone/phone-styles.css', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-            res.end(data);
-        });
-    } else if (req.url === '/fav') { 
-        fs.readFile('phone/phone-fav.html', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        });
-    } else if (req.url === '/phone-fav.css') { 
-        fs.readFile('phone/phone-fav.css', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-            res.end(data);
-        });
-    } else if (req.url === '/tv') {
-        fs.readFile('tv/tv-index.html', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        });
-    } else if (req.url === '/tv-script.js') {
-        fs.readFile('tv/tv-script.js', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/javascript' });
-            res.end(data);
-        });
-    } else if (req.url === '/tv-styles.css') { 
-        fs.readFile('tv/tv-styles.css', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-            res.end(data);
-        });
-    } else if (req.url === '/socket.io/socket.io.js') {
-        const socketIOClientPath = path.join(__dirname, 'node_modules', 'socket.io', 'client-dist', 'socket.io.min.js');
-        fs.readFile(socketIOClientPath, (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'application/javascript' });
-            res.end(data);
-        });
-    } else if (req.url === '/css-addons/css/fontawesome.css') {
-        fs.readFile('css-addons/css/fontawesome.css', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err)
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-            res.end(data);
-        });
-    } else if (req.url === '/css-addons/css/solid.css') {
-        fs.readFile('css-addons/css/solid.css', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-            res.end(data);
-        });
-    } else if (req.url === '/css-addons/webfonts/fa-solid-900.woff2') {
-        fs.readFile('css-addons/webfonts/fa-solid-900.woff2', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log('Failed to load fa-solid-900.woff2 error: ' + err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'font/woff2' });
-            res.end(data);
-        });
-    /*} else if (req.url === '/css-addons/webfonts/fa-solid-900.ttf') {
-        fs.readFile('css-addons/webfonts/fa-solid-900.ttf', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log('Failed to load fa-solid-900.ttf error: ' + err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'font/ttf' });
-            res.end(data);
-        });  */
-    } else if (req.url === '/resources/videos/daily-dose.mp4') {
-        fs.readFile('resources/videos/daily-dose.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/amazon.mp4') {
-        fs.readFile('resources/videos/amazon.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/aot.mp4') {
-        fs.readFile('resources/videos/aot.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/bbc-earth.mp4') {
-        fs.readFile('resources/videos/bbc-earth.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/china.mp4') {
-        fs.readFile('resources/videos/china.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/game-of-thrones.mp4') {
-        fs.readFile('resources/videos/game-of-thrones.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/paella.mp4') {
-        fs.readFile('resources/videos/paella.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/san-jacobo.mp4') {
-        fs.readFile('resources/videos/daily-dose.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else if (req.url === '/resources/videos/squid-game.mp4') {
-        fs.readFile('resources/videos/squid-game.mp4', (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                console.log(err);
-                res.end(JSON.stringify(err));
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'video/mp4' });
-            res.end(data);
-        });
-    } else {
-        res.writeHead(404);
-        res.end('Not found');
-    }
+var fav1 = `DailyDose`;
+var fav2 = `Paella`;
+
+app.use(cors());
+
+
+app.use(express.static(path.join(__dirname))); // Serve static files
+
+
+app.get('/phone', (req, res) => {
+    res.sendFile(path.join(__dirname, 'phone/phone-index.html'));
 });
 
-const io = require('socket.io')(server); // Create socket
+app.get("phone/phone-script.js", (req, res) => {
+    res.sendFile(path.join(__dirname, 'phone/phone-script.js'));
+});
+
+// app.get("phone/phone-styles.css", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'phone/phone-styles.css'));
+// });
+
+app.get("/fav", (req, res) => {
+    res.sendFile(path.join(__dirname, 'phone/phone-fav.html'));
+});
+
+app.get("phone/phone-fav.css", (req, res) => {
+    res.sendFile(path.join(__dirname, 'phone/phone-fav.css'));
+});
+
+app.get("/tv", (req, res) => {
+    res.sendFile(path.join(__dirname, 'tv/tv-index.html'));
+});
+
+// app.get("tv/tv-script.js", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'tv/tv-script.js'));
+// });
+
+// app.get("tv/tv-styles.css", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'tv/tv-styles.css'));
+// });
+
+app.get("socket.io/socket.io.js", (req, res) => {
+    res.sendFile(path.join(__dirname, 'node_modules', 'socket.io', 'client-dist', 'socket.io.min.js'));
+});
+
+
+//if the url does not exist, report 404
+app.get('*', (req, res) => {
+    res.status(404).send('404 - Page not found');
+});
+
+
+function sendMessage(message) { // Send message to tv
+    io.emit('message', message);
+    console.log("Message sent");
+}
+
 
 io.on('connection', (socket) => { // Listen for connection
-    console.log('A user connected'); // Log connection
- 
-    socket.on('icon-clicked', (data) => { // Listen for icon click
-        console.log(`Icon clicked: ${data.iconId}`);
-        const message = {
-            type: 'iconClicked',
-            iconId: data.iconId
-        }; 
-        sendMessage(message); // Send message to tv
+    console.log(`user with sd ${socket.id} connected`); // Log connection
+
+    socket.on('icon-clicked', (iconId) => { // Listen for icon-click event
+        console.log(`Icon clicked: ${iconId}`);
+        socket.broadcast.emit('tv-action', iconId); // Send message to tv
+    });
+
+    socket.on('get-client-fav', () => {
+        console.log("send client: ", fav1, fav2);
+        socket.emit('update-client-fav', fav1, fav2);
+    });
+
+    socket.on('update-server-fav', (fav) => { 
+        if (fav1 != fav && fav2 != fav){
+            fav2 = fav1;
+            fav1 = fav;
+          }
+        console.log(`New fav1:`, fav1);
+        console.log(`New fav2:`, fav2); 
+    });
+
+    socket.on('video-clicked', (videoId) => { // Listen for video-click event
+        console.log(`Video clicked: ${videoId}`);
+        socket.broadcast.emit('tv-action', videoId); // Send message to tv
     });
 
     socket.on('disconnect', () => { // Listen for disconnection
@@ -267,7 +104,3 @@ server.listen(PORT, () => { // Listen on port
     console.log(`Server listening on port ${PORT}`);
 });
 
-function sendMessage(message) { // Send message to tv
-    io.emit('message', message);
-    console.log("Message sent");
-}
