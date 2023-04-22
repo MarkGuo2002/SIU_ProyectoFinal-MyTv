@@ -31,7 +31,7 @@ a {
     align-content: center;
     margin: 0px 0px 0px 0px;
     width: 100%;
-    height: 100%;
+    height: 90vh;
 }
 
 
@@ -46,13 +46,13 @@ a {
     margin: 0;
 }
 
-#miPopup{
+#miPopup {
     z-index: 10;
 }
 
 video {
     border-radius: 10px;
-    width: 350px;
+    width: 300px;
     border: 5px solid var(--dark-blue2);
 
     transition: transform 0.3s ease-in-out;
@@ -75,10 +75,10 @@ video {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    padding: 10px 0px 10px 0px;
 
-    padding: 10px;
     width: 98%;
-    height: 6vh;
+    height: 8.5vh;
     border-radius: 10px;
     background-color: var(--dark-blue2);
     transition: all 0.3s ease-in-out;
@@ -86,9 +86,9 @@ video {
 
 
 .header li {
-    padding-bottom: 10px;
+
     transition: transform 0.3s ease-in-out;
-    padding: 10px 40px 10px 40px;
+    padding: 5px 40px 5px 40px;
     border-radius: 10px;
     list-style-type: none;
 }
@@ -98,7 +98,7 @@ video {
 
 
 .header li a {
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--white);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -143,7 +143,7 @@ video {
     margin-right: auto;
     padding: 10px 40px 10px 40px;
 
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--dark-orange);
     font-weight: 700;
 
@@ -153,7 +153,7 @@ video {
 .user-dropdown {
     z-index: 10;
     height: 70%;
-    width:  200px;
+    width: 200px;
     background-color: rgba(45, 49, 66, 0.75);
     position: absolute;
     border-radius: 10px;
@@ -164,25 +164,27 @@ video {
     transform: translateY(8vh);
 
 }
-.circle{
+
+.circle {
     margin: 20px;
     display: inline-block;
     width: 100px;
-    height: 100px;    
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     margin-top: 25px;
     background-color: blue;
     margin-left: 45px;
-    
+
 }
-.circle img{
+
+.circle img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.barra_carga{
+.barra_carga {
     width: 90%;
     height: 25%;
     background-color: var(--dark-orange);
@@ -192,21 +194,24 @@ video {
     z-index: 1;
     transition: all 0.3s ease-in-out;
 }
-.Text_experiencia{
+
+.Text_experiencia {
     margin-left: 30%;
     color: white;
     font-size: 18px;
     font-weight: bold;
 
 }
-.user-option{
-    
+
+.user-option {
+
     margin-left: 25px;
     margin-top: 50px;
-    
+
 }
-.user-option-button{
-    height: 50px ;
+
+.user-option-button {
+    height: 50px;
     width: 150px;
 }
 
@@ -230,17 +235,17 @@ video {
 
 #drop-down-menu {
     display: none;
-  }
-  
-  /* Muestra el objeto cuando tiene la clase "visible" */
-  #drop-down-menu.visible {
+}
+
+/* Muestra el objeto cuando tiene la clase "visible" */
+#drop-down-menu.visible {
     display: block;
-  }
-  
+}
+
 /* ------------------------------- dropdown menu ------------------------------- */
 /* -------------------------------experience page------------------------------- */
 
-.experience-card{
+.experience-card {
     width: 95%;
     height: 25%;
     display: flex;
@@ -253,28 +258,28 @@ video {
     background-color: var(--dark-blue2);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    margin-left : 3%;
+    margin-left: 3%;
 }
 
-.experience-card:hover{
+.experience-card:hover {
     transform: scale(1.05);
     border: 5px solid var(--dark-orange);
 }
 
-.Experience_needed{
+.Experience_needed {
     color: white;
     font-size: 24px;
     font-weight: bold;
 }
 
-.Description_text{
+.Description_text {
     color: white;
     font-size: 18px;
     font-weight: bold;
 }
 
-.experience-title{
-    
+.experience-title {
+
     width: 95%;
     height: 25%;
     display: flex;
@@ -287,32 +292,32 @@ video {
     background-color: var(--dark-blue2);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    margin-left : 3%;
+    margin-left: 3%;
 }
 
-.circle_exp{
+.circle_exp {
     margin: 20px;
     display: inline-block;
     width: 100px;
-    height: 100px;    
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     margin-top: 25px;
     background-color: blue;
 }
 
-.gestures_texts{
+.gestures_texts {
     margin: 40px;
     display: inline-block;
     width: 100px;
-    height: 100px;    
-    
+    height: 100px;
+
     overflow: hidden;
     margin-top: 25px;
-   
+
 }
 
-.circle_exp img{
+.circle_exp img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -328,31 +333,29 @@ video {
     display: none;
     justify-content: center;
     align-items: center;
-  }
-  
-  .contenido-popup {
+}
+
+.contenido-popup {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-  }
+}
 
-  .circle_user{
-  margin: 20px;
+.circle_user {
+    margin: 20px;
     display: inline-block;
     width: 100px;
-    height: 100px;    
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     margin-top: 25px;
     background-color: blue;
     margin-left: 40%;
-  }
+}
 
-  .circle_user img{
+.circle_user img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-
