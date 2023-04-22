@@ -6,72 +6,23 @@ let messageContainer = document.querySelector(".message-container");
 console.log(userDropdown);
 
 const INTERFACES = [
+    
     {
-        id: "logo",
+        id: "nivel-1",
+        
     },
     {
-        id: "settings"
+        id: "nivel-2",
+        
     },
     {
-        id: "gestures"
-    },
-    {
-        id: "user"
-    },
-    {
-        id: "daily-dose",
-        title: "Daily Dose Of Internet",
-        liked: false,
-    },
-    {
-        id: "san-jacobo",
-        title: "Cómo hacer un San Jacobo",
-        liked: false,
-    },
-    {
-        id: "bbc-earth",
-        title: "BBC Earth Look at this cute cat",
-        liked: false,
-    },
-    {
-        id: "squid-game",
-        title: "Squid Game - Full Video",
-        liked: false,
-    },
-    {
-        id: "game-of-thrones",
-        title: "Game of Thrones - Full Video",
-        liked: false,
-    },
-    {
-        id: "aot",
-        title: "Attack on Titan - Watch Anime",
-        liked: false,
-    },
-    {
-        id: "amazon",
-        title: "Documental | How beautiful is Amazon?",
-        liked: false,
-    },
-    {
-        id: "china",
-        title: "Documental | Cómo de diferente es la cultura china?",
-        liked: false,
-    },
-    {
-        id: "paella",
-        title: "Cómo hacer una paella super fácil",
-        liked: false,
+        id: "nivel-3",
+        
     }
 ]
-var videoStartIndex = 4;
+var videoStartIndex = 1;
 
-let logo = document.getElementById("logo");
 
-logo.addEventListener("click", () => {
-    fav = "test";
-    sendFav(fav);
-});
 
 socket.on('connect', () => { // Listen for connection
     console.log('Connected to server');
@@ -127,34 +78,11 @@ function displayGestures() {
 }
 
 
-function populateVideos() {
-    let auxIndex = videoStartIndex;
-    console.log("populate");
-    //skipping headers
 
-    for (auxIndex; auxIndex < INTERFACES.length; auxIndex++) {
-        let videoCard = document.createElement("div");
-        videoCard.classList.add("video-card");
-        let video = document.createElement("video");
-        video.setAttribute("id", INTERFACES[auxIndex].id);
-        video.setAttribute("src", `/resources/videos/${INTERFACES[auxIndex].id}.mp4#t=3`);
-        video.setAttribute("controls", "");
-
-        let title = document.createElement("p");
-        title.classList.add("video-title");
-        title.innerHTML = INTERFACES[auxIndex].title;
-
-        videoCard.appendChild(video);
-        videoCard.appendChild(title);
-        videoContainer.appendChild(videoCard);
-
-
-    }
-}
 
 function moveUp() {
     console.log("up");
-    i = i - 3;
+    i = i - 1;
     if (i < 0) {
         i = INTERFACES.length - 1;
     }
@@ -165,7 +93,7 @@ function moveUp() {
 
 function moveDown() {
     console.log("down");
-    i = i + 3;
+    i = i + 1;
     if (i > INTERFACES.length - 1) {
         i = 0;
     }
@@ -176,7 +104,7 @@ function moveDown() {
 
 function moveLeft() {
     console.log("left");
-    i--;
+    i = i - 1;
     if (i < 0) {
         i = INTERFACES.length - 1;
     }
@@ -186,8 +114,8 @@ function moveLeft() {
 }
 
 function moveRight() {
-    console.log("right");
-    i++;
+    console.log("down");
+    i = i + 1;
     if (i > INTERFACES.length - 1) {
         i = 0;
     }
@@ -196,7 +124,6 @@ function moveRight() {
     document.getElementById(selectedId).classList.add("selected");
 }
 
-populateVideos();
 var i = 0;
 let selectedId = INTERFACES[i].id;
 console.log('selectedId', selectedId);
@@ -240,10 +167,10 @@ function handleRequest(iconId) { // Handle request
             break;
         case 'gestures':
             console.log('Gestures');
-            displayGestures();
             break;
         case 'go-back':
             console.log('Go back');
+            GoBackToIndex();
             break;
         case 'okay':
             if (i < videoStartIndex) {
@@ -251,7 +178,6 @@ function handleRequest(iconId) { // Handle request
                 handleExperience();
                 break;
             }
-            console.log('Okay');
             break;
         case 'daily-dose':
             console.log('Daily dose on tv');
@@ -260,34 +186,6 @@ function handleRequest(iconId) { // Handle request
         case 'paella':
             console.log('Paella on tv');
             playVideo('paella');
-            break;
-        case 'amazon':
-            console.log('Amazon on tv');
-            playVideo('amazon');
-            break;
-        case 'aot':
-            console.log('Attack on titan on tv');
-            playVideo('aot');
-            break;
-        case 'bbc-earth':
-            console.log('BBC Earth on tv');
-            playVideo('bbc-earth');
-            break;
-        case 'china':
-            console.log('China on tv');
-            playVideo('china');
-            break;
-        case 'san-jacobo':
-            console.log('San Jacobo on tv');
-            playVideo('san-jacobo');
-            break;
-        case 'game-of-thrones':
-            console.log('Game of thrones on tv');
-            playVideo('game-of-thrones');
-            break;
-        case 'squid-game':
-            console.log('Squid game on tv');
-            playVideo('squid-game');
             break;
         case 'heart':
             console.log('Heart');
@@ -298,9 +196,11 @@ function handleRequest(iconId) { // Handle request
     }
 }
 
-user.addEventListener("click", () => {
-    console.log("click");
-    userDropdown.classList.toggle("user-dropdown-show");});
+
+
+function GoBackToIndex() {
+    window.location.href = "tv-index.html";
+}
 
 function showDrop() {
     var drop_menu = document.getElementById("drop-down-menu");
@@ -346,7 +246,6 @@ function handleExperience() {
     }
 }
 function handleMenuSelection() {
-
     switch (selectedId) {
         case 'user':
             console.log('user');
@@ -368,4 +267,3 @@ function handleMenuSelection() {
             console.log('Unknown request');
     }
 }
-

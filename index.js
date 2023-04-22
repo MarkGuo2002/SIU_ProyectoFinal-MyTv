@@ -11,7 +11,7 @@ const io = socketIO(server);
 
 const PORT = 3000; // Port to listen on
 
-var fav1 = `DailyDose`;
+var fav1 = `daily-dose`;
 var fav2 = `Paella`;
 
 app.use(cors());
@@ -87,7 +87,7 @@ io.on('connection', (socket) => { // Listen for connection
     });
 
     socket.on('video-clicked', (videoId) => { // Listen for video-click event
-        console.log(`Video clicked: ${videoId}`);
+        console.log(`Video clicked serv: ${videoId}`);
         socket.broadcast.emit('tv-action', videoId); // Send message to tv
     });
 

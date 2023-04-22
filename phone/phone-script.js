@@ -111,7 +111,8 @@ function redirectTo(url) { // Redirect to the given url
 }
 
 
-function sendIdVideo(idVideo) { // Send video ID to the server
+function sendIdVideo(idVideo) {
+  console.log(idVideo); // Send video ID to the server
   socket.emit('video-clicked', idVideo);
 }
 
@@ -125,8 +126,8 @@ function updateFavHtml(fav1, fav2) { // Update favs on the HTML page
   var containerFav1 = document.querySelector(".container-fav1"); // Get the fav containers
   var containerFav2 = document.querySelector(".container-fav2"); // Get the fav containers
   if (containerFav1 && containerFav2) { // If the fav containers exist
-    containerFav1.innerHTML = `<img id="${fav1}" onclick="sendIdVideo('${fav1}')" src="\\resources\\preview_videos\\${fav1}.png" alt="">`;
-    containerFav2.innerHTML = `<img id="${fav2}" onclick="sendIdVideo('${fav2}')" src="\\resources\\preview_videos\\${fav2}.png" alt="">`;
+    containerFav1.innerHTML = `<img id="${fav1}" onclick="sendIdVideo('${fav1}')" src="\\resources\\preview_videos\\${fav1}.jpg" alt="">`;
+    containerFav2.innerHTML = `<img id="${fav2}" onclick="sendIdVideo('${fav2}')" src="\\resources\\preview_videos\\${fav2}.jpg" alt="">`;
   }
 }
 
