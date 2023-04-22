@@ -1,9 +1,12 @@
 const socket = io(); // Connect to the server
 let isDebouncing = false; // Indicates if a movement has been detected recently
 const wait = 500 // Time to wait before detecting another movement
-
 var fav1 = null;
 var fav2 = null;
+let startY = null;
+let endY = null;
+
+updateFavJs();
 
 window.addEventListener('devicemotion', event => { // Detect device movement
   if (!isDebouncing) {
@@ -51,6 +54,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+document.addEventListener("touchstart", function(event) {
+  if (event.touches.length === 1) {
+    startY = event.touches[0].clientY;
+  }
+}, false);
+
+document.addEventListener("touchmove", function(event) {
+  if (event.touches.length === 1) {
+    endY = event.touches[0].clientY;
+  }
+}, false);
+
+document.addEventListener("touchend", function() {
+  if (startY !== null && endY !== null && endY < startY) {
+    handleIconClick('gestures');
+  }
+  startY = endY = null;
+}, false);
+  
+
 function handleIconClick(iconId) { // Handle icon click
   socket.emit('icon-clicked', iconId); // Send icon id to the server
 }
@@ -67,8 +90,6 @@ function sendidvideo(idvideo) {
 socket.on('connect', () => { // Listen for connection
   console.log('Connected to server');
 });
-
-updateFavJs();
 
 socket.on('update-client-fav', (newFav1, newFav2) => { 
   fav1 = newFav1;
