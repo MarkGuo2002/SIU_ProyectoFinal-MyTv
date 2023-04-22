@@ -13,7 +13,7 @@ const INTERFACES = [
         id: "settings"
     },
     {
-        id: "favourites"
+        id: "gestures"
     },
     {
         id: "user"
@@ -64,6 +64,7 @@ const INTERFACES = [
         liked: false,
     }
 ]
+var videoStartIndex = 4;
 
 let logo = document.getElementById("logo");
 
@@ -108,21 +109,40 @@ function displayMessage(msg) {
 
 }
 
+function displayGestures() {
+    if (messageContainer.childElementCount > 0) {
+        return;
+    }
+    let messageCard = document.createElement("div");
+    messageCard.classList.add("message-card");
+
+    let gestureImg = document.createElement("img");
+    gestureImg.setAttribute("src", "/resources/gestos/gestures.jpeg");
+
+    messageCard.appendChild(gestureImg);
+    messageContainer.appendChild(messageCard);
+    setTimeout(() => {
+        messageContainer.removeChild(messageCard);
+    }, 5000);
+}
+
+
 function populateVideos() {
+    let auxIndex = videoStartIndex;
     console.log("populate");
     //skipping headers
 
-    for (let i = 4; i < INTERFACES.length; i++) {
+    for (auxIndex; auxIndex < INTERFACES.length; auxIndex++) {
         let videoCard = document.createElement("div");
         videoCard.classList.add("video-card");
         let video = document.createElement("video");
-        video.setAttribute("id", INTERFACES[i].id);
-        video.setAttribute("src", `/resources/videos/${INTERFACES[i].id}.mp4#t=3`);
+        video.setAttribute("id", INTERFACES[auxIndex].id);
+        video.setAttribute("src", `/resources/videos/${INTERFACES[auxIndex].id}.mp4#t=3`);
         video.setAttribute("controls", "");
 
         let title = document.createElement("p");
         title.classList.add("video-title");
-        title.innerHTML = INTERFACES[i].title;
+        title.innerHTML = INTERFACES[auxIndex].title;
 
         videoCard.appendChild(video);
         videoCard.appendChild(title);
@@ -177,13 +197,14 @@ function moveRight() {
 }
 
 populateVideos();
-let i = 0;
+var i = 0;
 let selectedId = INTERFACES[i].id;
 console.log('selectedId', selectedId);
 // Add selected class to initial item
 document.getElementById(selectedId).classList.add("selected");
 
 function handleRequest(iconId) { // Handle request
+    console.log(i)
     document.getElementById(selectedId).classList.remove("selected");
     switch (iconId) {
         case 'volume-up':
@@ -209,6 +230,11 @@ function handleRequest(iconId) { // Handle request
             moveRight();
             break;
         case 'play-pause':
+            if (i < videoStartIndex) {
+                console.log("menu");
+                handleMenuSelection();
+                break;
+            }
             console.log('Play/pause');
             play_pause();
             break;
@@ -234,21 +260,13 @@ function handleRequest(iconId) { // Handle request
             sendFav();
             break;
         default:
-            console.log('Unknown request');
+            console.log('Unknown request?');
     }
 }
 
-function show_drop() {
+function showDrop() {
     var drop_menu = document.getElementById("drop-down-menu");
     drop_menu.classList.toggle("visible");
-}
-
-function mostrarPopup() {
-    document.getElementById("miPopup").style.display = "flex";
-}
-
-function ocultarPopup() {
-    document.getElementById("miPopup").style.display = "none";
 }
 
 function iraExperience() {
@@ -279,6 +297,26 @@ function sendFav() {
     socket.emit('update-server-fav', fav.getAttribute('id'));
 }
 
-
-
+function handleMenuSelection() {
+    switch (selectedId) {
+        case 'user':
+            console.log('user');
+            showDrop();
+            break;
+        case 'gestures':
+            console.log('gestures');
+            displayGestures();
+            break;
+        case 'settings':
+            console.log('asdasdasdasdads');
+            displayMessage('This is Settings');
+            break;
+        case 'logo':
+            console.log('logo');
+            displayMessage('Welcome to MyTv!!!');
+            break;
+        default:
+            console.log('Unknown request');
+    }
+}
 
