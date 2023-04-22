@@ -16,6 +16,13 @@
 
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+ul {
+    margin: 0;
+}
 
 a {
     text-decoration: none;
@@ -36,7 +43,7 @@ a {
 
 
 .video-card {
-    margin: 30px 30px 5px 30px;
+    margin: 30px 30px 30px 30px;
     width: fit-content;
 }
 
@@ -52,7 +59,9 @@ a {
 
 video {
     border-radius: 10px;
-    width: 300px;
+    max-width: 250px;
+    width: 100%;
+
     border: 5px solid var(--dark-blue2);
 
     transition: transform 0.3s ease-in-out;
@@ -78,7 +87,7 @@ video {
     padding: 10px 0px 10px 0px;
 
     width: 98%;
-    height: 8.5vh;
+    height: 7.5vh;
     border-radius: 10px;
     background-color: var(--dark-blue2);
     transition: all 0.3s ease-in-out;
@@ -86,9 +95,8 @@ video {
 
 
 .header li {
-
     transition: transform 0.3s ease-in-out;
-    padding: 5px 40px 5px 40px;
+    padding: 10px 40px 5px 40px;
     border-radius: 10px;
     list-style-type: none;
 }
@@ -98,10 +106,25 @@ video {
 
 
 .header li a {
+    align-items: center;
     font-size: 1.5em;
     color: var(--white);
     text-decoration: none;
     transition: all 0.3s ease;
+}
+
+.logo-container {
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    margin-left: 10px;
+    margin-right: auto;
+    padding: 10px 40px 15px 40px;
+
+    font-size: 1.5em;
+    color: var(--dark-orange);
+    font-weight: 700;
+
 }
 
 /* .header li:hover a {
@@ -137,33 +160,10 @@ video {
     transition: all 0.3s ease-in-out;
 }
 
-.logo-container {
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    margin-right: auto;
-    padding: 10px 40px 10px 40px;
-
-    font-size: 1.5em;
-    color: var(--dark-orange);
-    font-weight: 700;
-
-}
 
 
-.user-dropdown {
-    z-index: 10;
-    height: 70%;
-    width: 200px;
-    background-color: rgba(45, 49, 66, 0.75);
-    position: absolute;
-    border-radius: 10px;
 
-    overflow: hidden;
-    backdrop-filter: blur(8.2px);
 
-    transform: translateY(8vh);
-
-}
 
 .circle {
     margin: 20px;
@@ -221,17 +221,7 @@ video {
     transition: all 0.3s ease-in-out;
 }
 
-.logo-container {
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    margin-right: auto;
-    padding: 10px 40px 10px 40px;
 
-    font-size: 2em;
-    color: var(--dark-orange);
-    font-weight: 700;
-
-}
 
 #drop-down-menu {
     display: none;
