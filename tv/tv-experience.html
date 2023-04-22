@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css-addons/css/solid.css">
     <link rel="stylesheet" href="tv-styles.css">
     <script src="/socket.io/socket.io.js"></script>
-    <script src="yikai-tv-script.js"></script>
+    <script src="tv-script.js"></script>
     <!--script src="tv-index.js" defer></script-->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
@@ -20,41 +20,43 @@
 
 <body>
     <ul class="header">
-        
-        <div class="logo-container"  id="logo"><i class="fa-solid fa-tv" style="margin-right: 15px;"></i>My TV</div>
-        
+
+        <div class="logo-container" id="logo"><i class="fa-solid fa-tv" style="margin-right: 15px;"></i>My TV</div>
+
         <li id="settings"><a href="tv-settings.html">Settings<i class="fa-solid fa-gear"></i></a></li>
         <li id="favourites"><a>Favourites<i class="fa-solid fa-heart"></i></a></li>
         <li id="home"><a href="tv-index.html">Home<i class="fa-solid fa-home"></i></a></li>
-        <li id="user"><a onclick="show_drop()" >User<i class="fa-solid fa-user"></i></a>
-            
+        <li id="user"><a onclick="show_drop()">User<i class="fa-solid fa-user"></i></a>
+
         </li>
-        
-            <div id= "drop-down-menu" class="user-dropdown" >
-                <div class="user-option"> <button class="user-option-button"> FAVOURITES </button></div>
-                <div class="user-option"> <button class="user-option-button"> CONFIGURATION </button></div>
-                
-                <div class="user-option"> <button  class="user-option-button" onclick="irAExperience()"> EXPERIENCE </button></div>
-              
+
+        <div id="drop-down-menu" class="user-dropdown">
+            <div class="user-option"> <button class="user-option-button"> FAVOURITES </button></div>
+            <div class="user-option"> <button class="user-option-button"> CONFIGURATION </button></div>
+
+            <div class="user-option"> <button class="user-option-button" onclick="irAExperience()"> EXPERIENCE </button>
+            </div>
+
             <div class="circle">
                 <img src="\resources\Imagenes_avatares\avatar-1.png" alt="Descripción de la imagen">
             </div>
             <a href="tv-experience.html">
                 <div>
-                    <img class="barra_carga " src="\resources\Imagenes_avatares\barra_carga_gris_grande.jpg" alt="Barra de carga">
+                    <img class="barra_carga " src="\resources\Imagenes_avatares\barra_carga_gris_grande.jpg"
+                        alt="Barra de carga">
                 </div>
             </a>
-            
+
             <!-- Añadimos tres botones -->
-            </div>
-        
+        </div>
+
     </ul>
 
-    
+
 
     <div class="experience-container">
         <div class="experience-title">
-            <p class="Experience_needed"> Keep improving your experience!  </p>
+            <p class="Experience_needed"> Keep improving your experience! </p>
             <p class="Experience_needed">You are already at 32 XP</p>
 
         </div>
@@ -64,21 +66,21 @@
             <div class="circle_exp">
                 <img src="\resources\Imagenes_candados\medalla.jpeg" alt="candado cerrado">
             </div>
-            
+
             <div class="circle_container">
-            
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\avatar-1.png" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\avatar-2.png" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\avatar-3.png" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\avatar-4.png" alt="Descripción de la imagen">
-            </div>
+
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\avatar-1.png" alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\avatar-2.png" alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\avatar-3.png" alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\avatar-4.png" alt="Descripción de la imagen">
+                </div>
             </div>
             <p class="Description_text"> Human Avatar Pack </p>
         </div>
@@ -87,45 +89,54 @@
             <div class="circle_exp">
                 <img src="\resources\Imagenes_candados\candado_cerrado.jpeg" alt="candado cerrado">
             </div>
-            
+
             <div class="circle_container">
-            
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales2.jpg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales3.jpg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales1.jpg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales4.jpg" alt="Descripción de la imagen">
-            </div>
+
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales2.jpg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales3.jpg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales1.jpg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\animales4.jpg"
+                        alt="Descripción de la imagen">
+                </div>
             </div>
             <p class="Description_text"> Animals Avatar Pack </p>
         </div>
 
 
-        <div class="experience-card"><p class="Experience_needed"> 100 XP</p>
+        <div class="experience-card">
+            <p class="Experience_needed"> 100 XP</p>
             <div class="circle_exp">
                 <img src="\resources\Imagenes_candados\candado_cerrado.jpeg" alt="candado cerrado">
             </div>
-            
+
             <div class="circle_container">
-            
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\Dinosaurio_niño.jpg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio2.jpeg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio3.jpeg" alt="Descripción de la imagen">
-            </div>
-            <div class="circle_exp">
-                <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio4.jpeg" alt="Descripción de la imagen">
-            </div>
+
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\Dinosaurio_niño.jpg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio2.jpeg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio3.jpeg"
+                        alt="Descripción de la imagen">
+                </div>
+                <div class="circle_exp">
+                    <img src="\resources\Imagenes_avatares\Imagenes_avatar_animales\dinosaurio4.jpeg"
+                        alt="Descripción de la imagen">
+                </div>
             </div>
             <p class="Description_text"> Dinosaur Avatar Pack </p>
 
