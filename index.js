@@ -1,8 +1,10 @@
 const path = require('path');
+const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 const express = require('express');
 const cors = require('cors');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -61,11 +63,6 @@ app.get('*', (req, res) => {
     res.status(404).send('404 - Page not found');
 });
 
-
-function sendMessage(message) { // Send message to tv
-    io.emit('message', message);
-    console.log("Message sent");
-}
 
 
 io.on('connection', (socket) => { // Listen for connection

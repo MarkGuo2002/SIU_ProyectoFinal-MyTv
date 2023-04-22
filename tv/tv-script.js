@@ -214,7 +214,6 @@ function handleRequest(iconId) { // Handle request
     }
 }
 
-
 function show_drop() {
     var drop_menu = document.getElementById("drop-down-menu");
     drop_menu.classList.toggle("visible");
@@ -247,7 +246,7 @@ function play_pause() {
     let video = document.getElementById(selectedId);
 
     video.paused ? video.play() : video.pause();
-    //video.paused ? video.requestFullscreen() : document.exitFullscreen();
+    //video.paused ? video.requestFullscreen() : document.exitFullscreen(); -- da errores de seguridad 
 
 }
 
