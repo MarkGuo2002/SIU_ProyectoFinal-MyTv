@@ -206,6 +206,10 @@ function handleRequest(iconId) { // Handle request
             console.log('Paella on tv');
             playVideo('paella');
             break;
+        case 'heart':
+            console.log('Heart');
+            sendFav();
+            break;
         default:
             console.log('Unknown request');
     }
@@ -358,12 +362,11 @@ function play_pause(){
     video.paused ? video.play() : video.pause();
     //video.paused ? video.requestFullscreen() : document.exitFullscreen(); -- da errores de seguridad 
 
-
-
 }
 
-function sendFav(fav) {
-    socket.emit('send-fav', fav);
+function sendFav() {
+    var fav = document.getElementById(selectedId);
+    socket.emit('update-server-fav', fav.getAttribute('id'));
 }
 
 

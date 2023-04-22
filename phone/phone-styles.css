@@ -91,7 +91,7 @@
 }
 
 .fa-hands,
-.fa-rotate-left {
+.fa-heart {
   color: var(--dark-blue);
   font-size: var(--font-size);
   transition: all 0.3s ease-in-out;
@@ -113,7 +113,8 @@
 .fa-chevron-right,
 .fa-pause-circle,
 .fa-rotate-left,
-.fa-minus {
+.fa-minus, 
+.fa-heart{
   color: var(--dark-blue);
   font-size: var(--font-size);
   transition: all 0.3s ease-in-out;
@@ -129,7 +130,8 @@
 .fa-star:hover,
 .fa-rotate-left:hover,
 .fa-check:hover,
-.fa-minus:hover {
+.fa-minus:hover ,
+.fa-heart:hover{
   color: #FFFFCC;
 }
 

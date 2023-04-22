@@ -10,6 +10,9 @@ const io = socketIO(server);
 
 const PORT = 3000; // Port to listen on
 
+var fav1 = `DailyDose`;
+var fav2 = `Paella`;
+
 app.use(cors());
 
 
@@ -67,16 +70,24 @@ function sendMessage(message) { // Send message to tv
 
 io.on('connection', (socket) => { // Listen for connection
     console.log(`user with sd ${socket.id} connected`); // Log connection
-    socket.broadcast.emit('helllo');
 
     socket.on('icon-clicked', (iconId) => { // Listen for icon-click event
         console.log(`Icon clicked: ${iconId}`);
         socket.broadcast.emit('tv-action', iconId); // Send message to tv
     });
 
-    socket.on('send-fav', (fav) => { 
-        console.log('fav: ', fav);
-        socket.broadcast.emit('send-update-fav', fav); // Send message to phone
+    socket.on('get-client-fav', () => {
+        console.log("send client: ", fav1, fav2);
+        socket.emit('update-client-fav', fav1, fav2);
+    });
+
+    socket.on('update-server-fav', (fav) => { 
+        if (fav1 != fav && fav2 != fav){
+            fav2 = fav1;
+            fav1 = fav;
+          }
+        console.log(`New fav1:`, fav1);
+        console.log(`New fav2:`, fav2); 
     });
 
     socket.on('video-clicked', (videoId) => { // Listen for video-click event
